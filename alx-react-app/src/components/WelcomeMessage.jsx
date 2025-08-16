@@ -4,7 +4,8 @@ import React from "react";
 function WelcomeMessage() {
     return (
         <div>
-            <h1>Hello everyone, I am learning React at ALX! </h1>
+            <h1>Hello everyone, I am learning React at ALX!</h1>
+            <>This is a simple JSX component.</>
             <p>I am learning about JSX!</p>
         </div>
     );

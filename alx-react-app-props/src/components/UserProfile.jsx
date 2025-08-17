@@ -5,10 +5,10 @@ function UserProfile() {
   const userData = useContext(UserContext);
 
   return (
-    <div className="user-profile">
+    <div>
       <h2>User Profile</h2>
-      <p><strong>Name:</strong> {userData.name}</p>
-      <p><strong>Email:</strong> {userData.email}</p>
+      <p>Name: {userData.name}</p>
+      <p>Email:{userData.email}</p>
     </div>
   );
 }

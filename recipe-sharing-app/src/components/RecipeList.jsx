@@ -1,39 +1,30 @@
 import { Link } from 'react-router-dom';
 import { useRecipeStore } from '../store/recipeStore';
 
+ 
 const RecipeList = () => {
   const recipes = useRecipeStore((state) => state.recipes);
-  const addFavorite =  useRecipeStore((state) => state.addFavorite);
-  const removeFavorite = useRecipeStore((state) => state.removeFavorite);
-  const favorites = useRecipeStore((state) => state.favorites);
-  const filteredRecipes = useRecipeStore((state) => state.filteredRecipes);
-  const searchTerm = useRecipeStore((state) => state.searchTerm);
-
-  // Determine which list to display
-  const displayRecipes = searchTerm ? filteredRecipes : recipes;
 
   return (
     <div>
-      <h2>Recipes</h2>
-      {displayRecipes.length > 0 ? (
-        displayRecipes.map((recipe) => (
-          <div key={recipe.id} style={{ marginBottom: '20px' }}>
-            <Link to={`/recipe/${recipe.id}`} style={{ textDecoration: 'none', color: 'blue' }}>
-              <h3>{recipe.title}</h3>
-            </Link>
-            <p>{recipe.description}</p>
-            {favorites.includes(recipe.id) ? (
-                <button onClick={() => removeFavorite(recipe.id)}>Unfavorite</button>
-            ) : (
-              <button onClick={() => addFavorite(recipe.id)}>Favorite</button>  
-            )}
-          </div>
-        ))
+      <h2>Recipe List</h2>
+      {recipes.length === 0 ? (
+        <p>No recipes yet.</p>
       ) : (
-        <p>No recipes match your search.</p>
+        <ul style={{ listStyle: 'none', padding: 0 }}>
+          {recipes.map((r) => (
+            <li key={r.id} style={{ marginBottom: '1rem', borderBottom: '1px solid #eee', paddingBottom: '1rem' }}>
+              <h3 style={{ marginBottom: '.25rem' }}>{r.title}</h3>
+              <p style={{ marginBottom: '.5rem' }}>{r.description}</p>
+              <Link to={`/recipes/${r.id}`}>View details →</Link>
+            </li>
+          ))}
+        </ul>
       )}
     </div>
   );
 };
 
+
 export default RecipeList;
+   

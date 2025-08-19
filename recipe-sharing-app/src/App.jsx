@@ -1,7 +1,9 @@
-import { useState } from 'react'   
-import { useState } from 'react'   
+import {Router, Route, Link } from 'react-router-dom';
+import { useState } from 'react' ;  
+import { useState } from 'react'; 
 import RecipeList from './components/RecipeList';
 import AddRecipeForm from './components/AddRecipeForm';
+import RecipeDetails from './components/RecipeDetails';
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -11,12 +13,20 @@ function App() {
 
   return (
     <div style={{ padding: '2rem', fontFamily: 'Arial' }}>
-      <h1> Recipe Sharing App</h1>
-      <AddRecipeForm />
-      <RecipeList />
+      <header style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}></header>
+        <h1> Recipe Sharing App</h1>
+        <Link to="/">Home</Link>
+        <Link to="/add">Add Recipe</Link>
+    <Routes>
+        <Route path="/" element={<RecipeList />} />
+      <Route path="/add" element={<AddRecipeForm />} />
+    <Route path="/recipes/:id" element={<RecipeDetails />} />
+        {/* Optional: 404 */}
+        <Route path="*" element={<p>Not Found</p>} />
+      </Routes>  
     </div>
       
-  )
+  );
 }
 
 export default App;

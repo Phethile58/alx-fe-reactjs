@@ -1,5 +1,5 @@
 import React from "react";
-import { fetchAdvancedUserD } from "../services/githubService";
+import { fetchAdvancedUser } from "../services/githubService";
 
 export default function Search() {0
   const [username, setUsername] = useState("");

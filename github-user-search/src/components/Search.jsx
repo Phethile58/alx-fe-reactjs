@@ -1,22 +1,23 @@
-import React from "react";
-import { fetchAdvancedUsers } from "../services/githubService";
+import {useState} from "react";
+import { fetchUsersData } from "../services/githubService";
 
-export default function Search() {0
+const  Search = () => {
   const [username, setUsername] = useState("");
-  const [location, setLocation] = useState("");
-  const [minRepos, setMinRepos] = useState("");
   const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+     if (!username)
+
     setLoading(true);
     setError("");
+    setUser(null);
 
     try {
-      const data = await fetchAdvanceUser(username, location, minRepos);
-      setUser(data.items || []);
+      const data = await fetchU(username);
+      setUser(data);
     } catch (err) {
      setError("Looks like we cant find the user");
     } finally {
@@ -25,40 +26,16 @@ export default function Search() {0
   };
 
   return (
-   <div className="max-w-xl mx-auto p-6">
-    <form
-        onSubmit={handleSearch}
-        className="bg-white shadow-lg rounded-xl p-6 space-y-4"
-      >
-      <h1 className="text-2xl font-bold text-gray-800">GitHub User Search</h1>
+   <div className="max-w-xl mx-auto p-4">
 
-    {/* Username input */}
+    <form onSubmit={handleSearch} className="flex gap-2 mb-4">
       <input
         type="text"
-        placeholder="Enter username"
+        placeholder="Enter GitHub username..."
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-           className="w-full p-2 border rounded-lg"
+           className="flex-1 border rounded-lg px-3 py-2"
       />
-      
-       {/* Location input */}
-        <input
-          type="text"
-          placeholder="Location (e.g. London)"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-          className="w-full p-2 border rounded-lg"
-        />
-
-        {/* Min repositories */}
-        <input
-          type="number"
-          placeholder="Min repositories"
-          value={minRepos}
-          onChange={(e) => setMinRepos(e.target.value)}
-          className="w-full p-2 border rounded-lg"
-        />
-
         <button
           type="submit"
           className="bg-blue-600 text-white px-4 py-2 rounded-lg w-full hover:bg-blue-700"
@@ -66,41 +43,33 @@ export default function Search() {0
           Search
         </button>
       </form>
-
-      {/* Results */}
-      <div className="mt-6">
-        {loading && <p>Loading...</p>}
-        {error && <p className="text-red-500">{error}</p>}
-        <ul className="space-y-4">
-          {users.map((user) => (
-            <li
-              key={user.id}
-              className="flex items-center space-x-4 p-4 border rounded-lg shadow-sm"
-            >
-              <img
-                src={user.avatar_url}
-                alt={user.login}
-                className="w-12 h-12 rounded-full"
-              />
-              <div>
-                <a
-                  href={user.html_url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-blue-600 font-semibold"
-                >
-                  {user.login}
-                </a>
-                <p className="text-gray-600">
-                  Score: {user.score.toFixed(2)}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>    
+{/* Conditional Rendering */}
+      {loading && <p className="text-gray-500">Loading...</p>}
+      {error && <p className="text-red-500">{error}</p>}
+      {user && (
+        <div className="border rounded-lg p-4 text-center">
+          <img
+            src={user.avatar_url}
+            alt={user.login}
+            className="w-24 h-24 rounded-full mx-auto mb-2"
+          />
+          <h2 className="text-lg font-semibold">{user.login}</h2>
+          <a
+            href={user.html_url}
+            target="_blank"
+            rel="noreferrer"
+            className="text-blue-600 underline"
+          >
+            View Profile
+          </a>
+        </div>
+      )}
+    </div>
   );
 };
 
+export default Search;
+
+      
+  
 

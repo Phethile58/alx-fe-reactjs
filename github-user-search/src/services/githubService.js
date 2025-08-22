@@ -6,7 +6,7 @@ export const fetchAdvanceUsers = async (username,location, minrepos) => {
 
      if (username) query += `${username} in:login `;
   if (location) query += `location:${location} `;
-  if (repos) query += `repos:>=${minrepos}`;
+  if (minrepos) query += `repos:>=${minrepos}`;
 
   try {
   const response = await axios.get(
@@ -15,6 +15,6 @@ export const fetchAdvanceUsers = async (username,location, minrepos) => {
 
   return response.data; 
 } catch (error) {
-  throw new Error;
+  throw  Error;
 }
 };

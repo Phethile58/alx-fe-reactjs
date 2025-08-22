@@ -28,7 +28,7 @@ const  Search = () => {
   return (
    <div className="max-w-xl mx-auto p-4">
     <form 
-    onSubmit={handleSearch}
+    onSubmit={handleSubmit}
      className="grid gap-3 sm:grid-cols-3 bg-white p-4 rounded-lg shadow-md">
       
       <input
@@ -58,7 +58,7 @@ const  Search = () => {
           className="bg-blue-600 text-white px-4 py-2 rounded-lg w-full hover:bg-blue-700"
         >
           Search
-        </button>
+        </button> 
       </form>
       <div className="mt-6">
       {loading && <p className="text-gray-500">Loading...</p>}

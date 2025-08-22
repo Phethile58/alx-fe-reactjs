@@ -1,21 +1,20 @@
 import axios from "axios";
 
-export const fetchAdvanceUsers = async (username,location, repos) => {
+export const fetchAdvanceUsers = async (username,location, minrepos) => {
+    
     let query = "";
 
      if (username) query += `${username} in:login `;
   if (location) query += `location:${location} `;
-  if (repos) query += `repos:>=${repos} `;
+  if (repos) query += `repos:>=${minrepos}`;
 
-  const url = `https://api.github.com/search/users?q=${encodeURIComponent(
-    query.trim()
-  )}`;
+  try {
+  const response = await axios.get(
+  `https://api.github.com/search/users?q=${query}`
+);
 
-  const response = await axios.get(url);
-  return response.data.items; 
-  catch (error) {
-    console.error("GitHub API Error:", error.response?.data || error.message);
-
-    return { error: "Looks like we can't find the user" };
-  }
+  return response.data; 
+} catch (error) {
+  throw new Error;
+}
 };

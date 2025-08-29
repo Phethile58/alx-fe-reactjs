@@ -1,11 +1,11 @@
 import {useState} from "react";
-import { fetchAdvanceUsers,  fetchUserData} from "../services/githubService";
+import { fetchAdvanceUsers, fetchUserData} from "../services/githubService";
 
 const  Search = () => {
   const [username, setUsername] = useState("");
   const [location, setLocation] = useState("");
   const [repos, setRepos] = useState("");
-  const [user, setUser] = useState(null);
+  const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -13,11 +13,11 @@ const  Search = () => {
     e.preventDefault();
     setLoading(true);
     setError("");
-    setUser([]);
+    setUsers([]);
 
     try {
       const data = await fetchAdvanceUsers(username, location, repos);
-      setUser(data.items || []);
+     setUsers(data.items || []);
     } catch (err) {
      setError("Looks like we cant find the user");
     } finally {
@@ -63,7 +63,10 @@ const  Search = () => {
       <div className="mt-6">
       {loading && <p className="text-gray-500">Loading...</p>}
       {error && <p className="text-red-500">{error}</p>}
-      {user.length > 0 && (
+      {!loading && !error && users.length === 0 && (
+    <p className="text-gray-500">No users found. Try different criteria.</p>
+  )}
+      {users.length > 0 && (
         <ul className="space-y-4">
             {users.map((user) => (
               <li
@@ -72,7 +75,7 @@ const  Search = () => {
               >
           <img
             src={user.avatar_url}
-            alt={users.login}
+            alt={user.login}
             className="w-16 h-16 rounded-full"
           />
           <div>

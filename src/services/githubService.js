@@ -1,8 +1,15 @@
 import axios from "axios";
 
+const api = axios.create({
+  baseURL: "https://api.github.com",
+  headers: import.meta.env.VITE_GITHUB_TOKEN
+    ? { Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}` }
+    : {},
+});
+
 export const fetchUserData = async (username) => {  
   try {
-  const response = await axios.get(`https://api.github.com/users/$username}`);
+  const response = await api.get(`/users/${username}`);
   return response.data; 
 } catch (error) {
   throw  error;

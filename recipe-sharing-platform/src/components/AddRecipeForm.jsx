@@ -2,11 +2,12 @@ import { useState } from "react";
 
 function AddRecipeForm({ onAddRecipe }) {
   const [title, setTitle] = useState("");
+  const [image, setImage] = useState("");
   const [ingredients, setIngredients] = useState([""]);
-  const [instructions, setInstructions] = useState([""]);
-  const [error, setError] = useState("");
+  const [steps, setSteps] = useState([""]);
+  const [errors, setErrors] = useState({}); // ✅ use an object to track multiple field errors
 
-const handleIngredientChange = (index, value) => {
+  const handleIngredientChange = (index, value) => {
     const newIngredients = [...ingredients];
     newIngredients[index] = value;
     setIngredients(newIngredients);
@@ -21,13 +22,19 @@ const handleIngredientChange = (index, value) => {
   const addIngredient = () => setIngredients([...ingredients, ""]);
   const addStep = () => setSteps([...steps, ""]);
 
+  // ✅ Validation function
+  const validate = () => {
+    const newErrors = {};
+    if (!title.trim()) newErrors.title = "Title is required";
+    if (ingredients.some((i) => !i.trim())) newErrors.ingredients = "All ingredient fields must be filled";
+    if (steps.some((s) => !s.trim())) newErrors.steps = "All step fields must be filled";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (!title || ingredients.some((i) => !i.trim()) || steps.some((s) => !s.trim())) {
-      setError("Please fill in all fields");
-      return;
-    }
+    if (!validate()) return;
 
     const newRecipe = {
       id: Date.now(),
@@ -42,15 +49,15 @@ const handleIngredientChange = (index, value) => {
 
     // Reset form
     setTitle("");
+    setImage("");
     setIngredients([""]);
     setSteps([""]);
-    setError("");
+    setErrors({});
   };
 
   return (
     <div className="max-w-xl mx-auto p-6 bg-white rounded-xl shadow-lg mt-6">
       <h2 className="text-2xl font-bold mb-4">Add a New Recipe</h2>
-      {error && <p className="text-red-500 mb-3">{error}</p>}
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -61,6 +68,7 @@ const handleIngredientChange = (index, value) => {
             onChange={(e) => setTitle(e.target.value)}
             className="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500"
           />
+          {errors.title && <p className="text-red-500 text-sm mt-1">{errors.title}</p>}
         </div>
 
         <div>
@@ -74,11 +82,8 @@ const handleIngredientChange = (index, value) => {
               className="w-full border border-gray-300 rounded-lg p-2 mb-2 focus:ring-2 focus:ring-blue-500"
             />
           ))}
-          <button
-            type="button"
-            onClick={addIngredient}
-            className="text-blue-500 hover:underline text-sm"
-          >
+          {errors.ingredients && <p className="text-red-500 text-sm mt-1">{errors.ingredients}</p>}
+          <button type="button" onClick={addIngredient} className="text-blue-500 hover:underline text-sm">
             + Add another ingredient
           </button>
         </div>
@@ -95,11 +100,8 @@ const handleIngredientChange = (index, value) => {
               rows={2}
             ></textarea>
           ))}
-          <button
-            type="button"
-            onClick={addStep}
-            className="text-blue-500 hover:underline text-sm"
-          >
+          {errors.steps && <p className="text-red-500 text-sm mt-1">{errors.steps}</p>}
+          <button type="button" onClick={addStep} className="text-blue-500 hover:underline text-sm">
             + Add another step
           </button>
         </div>
@@ -115,4 +117,6 @@ const handleIngredientChange = (index, value) => {
   );
 }
 
-export default AddRecipeForm; 
+export default AddRecipeForm;
+
+         

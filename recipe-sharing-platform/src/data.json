@@ -3,7 +3,7 @@
     "id": 1,
     "title": "Spaghetti Carbonara",
     "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-    "image": "https://via.placeholder.com/300x200",
+    "image": "https://images.unsplash.com/photo-1603074227430-0b0efb8f0fae",
     "ingredients": ["200g spaghetti", "100g bacon", "2 eggs", "50g parmesan cheese", "Black pepper"],
     "instructions": [
       "Cook the spaghetti according to package instructions.",
@@ -32,7 +32,7 @@
     "id": 3,
     "title": "Avocado Toast",
     "summary": "Toasted bread topped with smashed avocado, salt, pepper, and optional extras like egg or tomato.",
-    "image": "https://via.placeholder.com/300x200",
+    "image": "https://images.unsplash.com/photo-1551183053-bf91a1d81141",
     "ingredients": [
     "2 slices of bread",
     "1 ripe avocado",

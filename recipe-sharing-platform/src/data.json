@@ -3,18 +3,50 @@
     "id": 1,
     "title": "Spaghetti Carbonara",
     "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-    "image": "https://via.placeholder.com/300x200"
-  },
+    "image": "https://via.placeholder.com/300x200",
+    "ingredients": ["200g spaghetti", "100g bacon", "2 eggs", "50g parmesan cheese", "Black pepper"],
+    "instructions": [
+      "Cook the spaghetti according to package instructions.",
+      "Fry the bacon until crispy.",
+      "Beat eggs and mix with grated parmesan.",
+      "Combine spaghetti with bacon and remove from heat.",
+      "Quickly stir in the egg mixture.",
+      "Serve immediately with extra parmesan and black pepper."
+    ]
+},
   {
     "id": 2,
     "title": "Chicken Tikka Masala",
     "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
-    "image": "https://via.placeholder.com/300x200"
+    "image": "https://via.placeholder.com/300x200",
+     "ingredients": ["500g chicken", "200g tomato puree", "100ml cream", "Spices", "Salt", "Oil"],
+    "instructions": [
+      "Marinate chicken with spices and yogurt for 2 hours.",
+      "Grill or pan-fry the chicken until cooked.",
+      "Prepare the sauce with tomato puree, cream, and spices.",
+      "Add chicken to the sauce and simmer for 10 minutes.",
+      "Serve hot with rice or naan."
+    ]
   },
   {
     "id": 3,
     "title": "Avocado Toast",
     "summary": "Toasted bread topped with smashed avocado, salt, pepper, and optional extras like egg or tomato.",
-    "image": "https://via.placeholder.com/300x200"
+    "image": "https://via.placeholder.com/300x200",
+    "ingredients": [
+    "2 slices of bread",
+    "1 ripe avocado",
+    "1 tsp lemon juice",
+    "Salt to taste",
+    "Black pepper to taste",
+    "Optional toppings: cherry tomatoes, radishes, poached egg, chili flakes"
+  ],
+  "instructions": [
+    "Toast the bread slices until golden brown.",
+    "Mash the avocado in a bowl and mix with lemon juice, salt, and pepper.",
+    "Spread the mashed avocado evenly on the toasted bread.",
+    "Add any optional toppings if desired.",
+    "Serve immediately."
+  ]
   }
 ]

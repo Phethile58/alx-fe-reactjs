@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Logs 
+=======
+# Logs
+>>>>>>> 3973cb6 (Add controlled and Formik registration forms)
 logs
 *.log
 npm-debug.log*
@@ -22,6 +26,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+<<<<<<< HEAD
 
 # Environment variables
 .env.env
+=======
+>>>>>>> 3973cb6 (Add controlled and Formik registration forms)

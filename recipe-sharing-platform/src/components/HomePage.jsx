@@ -26,7 +26,7 @@ function HomePage() {
             key={recipe.id}
             className="bg-white rounded-xl shadow-md hover:shadow-xl transition transform hover:scale-105 overflow-hidden"
           >
-            <img src={recipe.image || "https://via.placeholder.com/300x200"} 
+            <img src={recipe.image || "https://via.placeholder.com/300x200" } 
             alt={recipe.title}
              className="w-full h-40 object-cover" />
             <div className="p-4">

@@ -1,0 +1,34 @@
+<<<<<<< HEAD
+# Logs 
+=======
+# Logs
+>>>>>>> 3973cb6 (Add controlled and Formik registration forms)
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+<<<<<<< HEAD
+
+# Environment variables
+.env.env
+=======
+>>>>>>> 3973cb6 (Add controlled and Formik registration forms)

@@ -1,13 +1,14 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import React from "react";
-import { useParams } from "react-router-dom";
+export default function BlogPost() {
+  const { id } = useParams(); // Get the dynamic :id from the URL
 
-const BlogPost = () => {
-  const { postId } = useParams();
-  return <h2>Viewing Blog Post {postId}</h2>;
-};
-
-export default BlogPost;
+  return (
+    <div>
+      <h2>Blog Post ID: {id}</h2>
+      <p>This is a placeholder for blog post {id} content.</p>
+    </div>
+  );
+}
 

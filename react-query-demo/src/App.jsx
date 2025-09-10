@@ -1,17 +1,17 @@
 import React from 'react'
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import PostsComponent from './components/PostsComponent.jsx'
+import "./App.css";
 
-function App() {
+const queryClient = new QueryClient();
+
+export default function App() {
   return (
-    <div className="App p-6">
-      <h1 className="text-2xl font-bold mb-4">React Query Demo</h1>
-      <p className="mb-6 text-gray-600">
-        Fetching and caching posts from JSONPlaceholder API using React Query.
-      </p>
-      
-      <PostsComponent />
-    </div>
+    // Wrap the app in QueryClientProvider
+    <QueryClientProvider client={queryClient}>
+      <div className="min-h-screen p-4 bg-gray-100">
+        <PostsComponent />
+      </div>
+    </QueryClientProvider>  
   )
-}
-
-export default App 
+   }

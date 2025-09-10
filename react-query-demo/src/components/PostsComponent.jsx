@@ -1,20 +1,20 @@
-import React from "react"
-import { useQuery } from "@tanstack/react-query"
-import axios from "axios"
+import React from "react";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 const fetchPosts = async () => {
-  const res = await axios.get("https://jsonplaceholder.typicode.com/posts")
-  return res.data
-}
+  const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
+  return res.data;
+};
 
 const PostsComponent = () => {
-  const { data, isLoading, isError, refetch } = useQuery({
+  const { data, isLoading, isError, error, refetch } = useQuery({
     queryKey: ["posts"],
     queryFn: fetchPosts,
-  })
+  });
 
-  if (isLoading) return <p>Loading posts...</p>
-  if (isError) return <p>Error fetching posts!</p>
+  if (isLoading) return <p>Loading posts...</p>;
+  if (isError) return <p>Error: {error.message}</p>; // Now uses `error`
 
   return (
     <div>
@@ -34,9 +34,7 @@ const PostsComponent = () => {
         ))}
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default PostsComponent
-
-
+export default PostsComponent;

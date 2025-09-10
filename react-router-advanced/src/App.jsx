@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 import Home from "./components/Home.jsx";
 import BlogPost from "./components/BlogPost";
 import Profile from "./components/Profile.jsx";
@@ -11,7 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/profile/*" element={<Profile />} /> {/* nested routes */}
+        <Route  path="/profile"  element={ <ProtectedRoute> <Profile /> </ProtectedRoute>}
         <Route path="/blog/:id" element={<BlogPost />} />
       </Routes>
     </Router>

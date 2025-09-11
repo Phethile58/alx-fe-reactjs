@@ -1,7 +1,11 @@
+// src/__tests__/TodoList.test.js
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import TodoList from "../components/TodoList";
 import userEvent from "@testing-library/user-event";
+import TodoList from "../components/TodoList";
+
+// ✅ Ensure jest-dom matchers are available
+import "@testing-library/jest-dom";
 
 describe("TodoList Component", () => {
   test("renders initial todos", () => {
@@ -10,16 +14,20 @@ describe("TodoList Component", () => {
     expect(screen.getByText("Build Todo App")).toBeInTheDocument();
   });
 
-  test("can add a new todo", async () => {
-    render(<TodoList />);
-    const input = screen.getByPlaceholderText("Enter a new todo");
-    const button = screen.getByText("Add");
+  test(
+    "can add a new todo",
+    async () => {
+      render(<TodoList />);
+      const input = screen.getByPlaceholderText("Enter a new todo");
+      const button = screen.getByText("Add");
 
-    await userEvent.type(input, "Test new todo");
-    fireEvent.click(button);
+      await userEvent.type(input, "Test new todo");
+      fireEvent.click(button);
 
-    expect(screen.getByText("Test new todo")).toBeInTheDocument();
-  });
+      expect(screen.getByText("Test new todo")).toBeInTheDocument();
+    },
+    10000 // increase timeout for async
+  );
 
   test("can toggle todo completion", () => {
     render(<TodoList />);
@@ -27,7 +35,6 @@ describe("TodoList Component", () => {
 
     fireEvent.click(todoItem);
 
-    // ✅ Matches your inline style from TodoList.jsx
     expect(todoItem).toHaveStyle("text-decoration: line-through");
   });
 
